@@ -13,6 +13,10 @@
   justify-content: space-around;
 }
 
+.hidden {
+  display: none;
+}
+
 .app-name {
   display: flex;
   justify-content: center;
@@ -32,6 +36,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+p {
+  color: #000000;
 }
 
 .message-selection {
