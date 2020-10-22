@@ -32,3 +32,19 @@ var data = {
     15: 'I am the sky, the rest is weather.',
   },
 }
+
+// QUERY SELECTORS 👇👇👇👇👇👇
+
+var affirmationSelection = document.querySelector('.affirmation-selection')
+var mantraSelection = document.querySelector(.'mantra-selection')
+var receiveMessageButton = document.querySelector('.receive-message-button')
+
+var outputBox = document.querySelector('.output-box')
+var yogaFigure = document.querySelector('.yoga-figure')
+
+// EVENT HANDLERS 👇👇👇👇👇👇
+
+affirmationSelection.addEventListener('click', )
+mantraSelection.addEventListener('click', )
+
+// FUNCTIONS 👇👇👇👇👇👇
