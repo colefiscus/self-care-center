@@ -67,13 +67,15 @@ function chooseMantra() {
 }
 
 function deliverMessage() {
-  yogaFigure.classList.add('hidden')
-  message.classList.remove('hidden')
   if (affirmationSelection.checked === true) {
+    yogaFigure.classList.add('hidden')
+    message.classList.remove('hidden')
     message.innerText = `
       ${returnRandomIndex(data.affirmations)}
     `
   } else if (mantraSelection.checked === true) {
+    yogaFigure.classList.add('hidden')
+    message.classList.remove('hidden')
     message.innerText = `
       ${returnRandomIndex(data.mantras)}
     `
