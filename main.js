@@ -37,8 +37,8 @@ var data = {
 // QUERY SELECTORS 👇👇👇👇👇👇
 var window = document.querySelector('.body')
 
-var affirmationSelection = document.querySelector('.affirmation-selection')
-var mantraSelection = document.querySelector('.mantra-selection')
+var affirmationSelection = document.querySelector('.radio-affirmation')
+var mantraSelection = document.querySelector('.radio-mantra')
 var receiveMessageButton = document.querySelector('.receive-message-button')
 
 var outputBox = document.querySelector('.output-box')
