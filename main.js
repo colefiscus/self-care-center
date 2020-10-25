@@ -46,8 +46,12 @@ var yogaFigure = document.querySelector('.yoga-figure')
 
 // EVENT HANDLERS 👇👇👇👇👇👇
 
-affirmationSelection.addEventListener('click', chooseAffirmation)
-mantraSelection.addEventListener('click', chooseMantra)
+affirmationSelection.addEventListener('click', function() {
+  selectMessageType(mantraSelection)
+})
+mantraSelection.addEventListener('click', function() {
+  selectMessageType(affirmationSelection)
+})
 receiveMessageButton.addEventListener('click', deliverMessage)
 clearButton.addEventListener('click', clearMessage)
 
@@ -56,13 +60,19 @@ function returnRandomIndex(array) {
   return array[(Math.floor(Math.random() * array.length))];
 }
 
-function chooseAffirmation() {
-  mantraSelection.checked = false
+function selectMessageType(selection) {
+  selection.checked = false
 }
 
-function chooseMantra() {
-  affirmationSelection.checked = false
-}
+// function deliverMessage() {
+//   if (affirmationSelection.checked === true || mantraSelection.checked === true)
+//     yogaFigure.classList.add('hidden')
+//     message.classList.remove('hidden')
+//     clearButton.classList.remove('hidden')
+//     message.innerText = `
+//       ${returnRandomIndex(data.affirmations)}
+//     `
+// }
 
 function deliverMessage() {
   if (affirmationSelection.checked === true) {
