@@ -61,18 +61,9 @@ function returnRandomIndex(array) {
 }
 
 function selectMessageType(selection) {
+  receiveMessageButton.disabled = false
   selection.checked = false
 }
-
-// function deliverMessage() {
-//   if (affirmationSelection.checked === true || mantraSelection.checked === true)
-//     yogaFigure.classList.add('hidden')
-//     message.classList.remove('hidden')
-//     clearButton.classList.remove('hidden')
-//     message.innerText = `
-//       ${returnRandomIndex(data.affirmations)}
-//     `
-// }
 
 function deliverMessage() {
   if (affirmationSelection.checked === true) {
@@ -93,9 +84,10 @@ function deliverMessage() {
 }
 
 function clearMessage() {
-    affirmationSelection.checked = false
-    mantraSelection.checked = false
-    message.classList.add('hidden')
-    clearButton.classList.add('hidden')
-    yogaFigure.classList.remove('hidden')
+  receiveMessageButton.disabled = true
+  affirmationSelection.checked = false
+  mantraSelection.checked = false
+  message.classList.add('hidden')
+  clearButton.classList.add('hidden')
+  yogaFigure.classList.remove('hidden')
 }
