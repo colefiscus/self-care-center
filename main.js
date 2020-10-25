@@ -35,58 +35,59 @@ var data = {
 }
 
 // QUERY SELECTORS 👇👇👇👇👇👇
-var window = document.querySelector('.body')
-
-var affirmationSelection = document.querySelector('.affirmation-selection')
-var mantraSelection = document.querySelector('.mantra-selection')
+var affirmationSelection = document.querySelector('.radio-affirmation')
+var mantraSelection = document.querySelector('.radio-mantra')
 var receiveMessageButton = document.querySelector('.receive-message-button')
 
 var outputBox = document.querySelector('.output-box')
 var message = document.querySelector('.message')
+var clearButton = document.querySelector('.clear-button')
 var yogaFigure = document.querySelector('.yoga-figure')
 
 // EVENT HANDLERS 👇👇👇👇👇👇
 
-affirmationSelection.addEventListener('click', chooseAffirmation)
-mantraSelection.addEventListener('click', chooseMantra)
+affirmationSelection.addEventListener('click', function() {
+  selectMessageType(mantraSelection)
+})
+mantraSelection.addEventListener('click', function() {
+  selectMessageType(affirmationSelection)
+})
 receiveMessageButton.addEventListener('click', deliverMessage)
-
-window.addEventListener('click', deselectMessage)
+clearButton.addEventListener('click', clearMessage)
 
 // FUNCTIONS 👇👇👇👇👇👇
 function returnRandomIndex(array) {
   return array[(Math.floor(Math.random() * array.length))];
 }
 
-function chooseAffirmation() {
-  mantraSelection.checked = false
-}
-
-function chooseMantra() {
-  affirmationSelection.checked = false
+function selectMessageType(selection) {
+  receiveMessageButton.disabled = false
+  selection.checked = false
 }
 
 function deliverMessage() {
   if (affirmationSelection.checked === true) {
     yogaFigure.classList.add('hidden')
     message.classList.remove('hidden')
+    clearButton.classList.remove('hidden')
     message.innerText = `
       ${returnRandomIndex(data.affirmations)}
     `
   } else if (mantraSelection.checked === true) {
     yogaFigure.classList.add('hidden')
     message.classList.remove('hidden')
+    clearButton.classList.remove('hidden')
     message.innerText = `
       ${returnRandomIndex(data.mantras)}
     `
   }
 }
 
-function deselectMessage() {
-  if (!event.target.classList.contains('deselect-proof')) {
-    affirmationSelection.checked = false
-    mantraSelection.checked = false
-    message.classList.add('hidden')
-    yogaFigure.classList.remove('hidden')
-  }
+function clearMessage() {
+  receiveMessageButton.disabled = true
+  affirmationSelection.checked = false
+  mantraSelection.checked = false
+  message.classList.add('hidden')
+  clearButton.classList.add('hidden')
+  yogaFigure.classList.remove('hidden')
 }
