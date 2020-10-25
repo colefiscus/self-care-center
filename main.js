@@ -35,14 +35,13 @@ var data = {
 }
 
 // QUERY SELECTORS 👇👇👇👇👇👇
-var window = document.querySelector('.body')
-
 var affirmationSelection = document.querySelector('.radio-affirmation')
 var mantraSelection = document.querySelector('.radio-mantra')
 var receiveMessageButton = document.querySelector('.receive-message-button')
 
 var outputBox = document.querySelector('.output-box')
 var message = document.querySelector('.message')
+var clearButton = document.querySelector('.clear-button')
 var yogaFigure = document.querySelector('.yoga-figure')
 
 // EVENT HANDLERS 👇👇👇👇👇👇
@@ -50,8 +49,7 @@ var yogaFigure = document.querySelector('.yoga-figure')
 affirmationSelection.addEventListener('click', chooseAffirmation)
 mantraSelection.addEventListener('click', chooseMantra)
 receiveMessageButton.addEventListener('click', deliverMessage)
-
-window.addEventListener('click', deselectMessage)
+clearButton.addEventListener('click', clearMessage)
 
 // FUNCTIONS 👇👇👇👇👇👇
 function returnRandomIndex(array) {
@@ -70,23 +68,24 @@ function deliverMessage() {
   if (affirmationSelection.checked === true) {
     yogaFigure.classList.add('hidden')
     message.classList.remove('hidden')
+    clearButton.classList.remove('hidden')
     message.innerText = `
       ${returnRandomIndex(data.affirmations)}
     `
   } else if (mantraSelection.checked === true) {
     yogaFigure.classList.add('hidden')
     message.classList.remove('hidden')
+    clearButton.classList.remove('hidden')
     message.innerText = `
       ${returnRandomIndex(data.mantras)}
     `
   }
 }
 
-function deselectMessage() {
-  if (!event.target.classList.contains('deselect-proof')) {
+function clearMessage() {
     affirmationSelection.checked = false
     mantraSelection.checked = false
     message.classList.add('hidden')
+    clearButton.classList.add('hidden')
     yogaFigure.classList.remove('hidden')
-  }
 }
