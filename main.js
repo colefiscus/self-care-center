@@ -14,7 +14,6 @@ var data = {
       'I honor my body by trusting the signals that it sends me.',
       'I manifest perfect health by making smart choices.',
     ],
-
   mantras: [
       'Breathing in, I send myself love. Breathing out, I send love to someone else who needs it.',
       'Don’t let yesterday take up too much of today.',
@@ -32,6 +31,8 @@ var data = {
       'Onward and upward.',
       'I am the sky, the rest is weather.',
     ],
+  splicedAffirmations: [],
+  splicedMantras: [],
 }
 
 // QUERY SELECTORS 👇👇👇👇👇👇
@@ -57,7 +58,7 @@ clearButton.addEventListener('click', clearMessage)
 
 // FUNCTIONS 👇👇👇👇👇👇
 function returnRandomIndex(array) {
-  return array[(Math.floor(Math.random() * array.length))];
+  return (Math.floor(Math.random() * array.length));
 }
 
 function selectMessageType(selection) {
@@ -65,21 +66,34 @@ function selectMessageType(selection) {
   selection.checked = false
 }
 
+function startRepeatMessages(array1, array2) {
+  if (array1.length === 0) {
+    alert("We've run out of new messages for this type. Please feel free to look over the messages again to find one that speaks to you.")
+    for (var i = 0; i < array2.length; i++)
+      array1.push(array2[i])
+      array2.length = 0
+  }
+}
+
 function deliverMessage() {
   if (affirmationSelection.checked === true) {
     yogaFigure.classList.add('hidden')
     message.classList.remove('hidden')
     clearButton.classList.remove('hidden')
-    message.innerText = `
-      ${returnRandomIndex(data.affirmations)}
-    `
+    startRepeatMessages(data.affirmations, data.splicedAffirmations)
+    var i = returnRandomIndex(data.affirmations)
+    message.innerText = `${data.affirmations[i]}`
+    data.splicedAffirmations.push(data.affirmations[i])
+    data.affirmations.splice(i, 1)
   } else if (mantraSelection.checked === true) {
-    yogaFigure.classList.add('hidden')
-    message.classList.remove('hidden')
-    clearButton.classList.remove('hidden')
-    message.innerText = `
-      ${returnRandomIndex(data.mantras)}
-    `
+      yogaFigure.classList.add('hidden')
+      message.classList.remove('hidden')
+      clearButton.classList.remove('hidden')
+      startRepeatMessages(data.mantras, data.splicedMantras)
+      var i = returnRandomIndex(data.mantras)
+      message.innerText = `${data.mantras[i]}`
+      data.splicedMantras.push(data.mantras[i])
+      data.mantras.splice(i, 1)
   }
 }
 
