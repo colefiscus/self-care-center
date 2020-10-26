@@ -12,7 +12,7 @@ Contributors: Cole Fiscus (he/him), Frontend student at Turing School of Softwar
 
 ## WHERE
 
-The webpage can be accessed [here](https://colefiscus.github.io/self-care-center).
+The webpage can be accessed [here](https://colefiscus.github.io/self-care-center/).
 
 ## WHAT
 
