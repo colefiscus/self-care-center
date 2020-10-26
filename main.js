@@ -14,7 +14,6 @@ var data = {
       'I honor my body by trusting the signals that it sends me.',
       'I manifest perfect health by making smart choices.',
     ],
-
   mantras: [
       'Breathing in, I send myself love. Breathing out, I send love to someone else who needs it.',
       'Don’t let yesterday take up too much of today.',
@@ -32,6 +31,8 @@ var data = {
       'Onward and upward.',
       'I am the sky, the rest is weather.',
     ],
+  splicedAffirmations: [],
+  splicedMantras: [],
 }
 
 // QUERY SELECTORS 👇👇👇👇👇👇
@@ -57,7 +58,7 @@ clearButton.addEventListener('click', clearMessage)
 
 // FUNCTIONS 👇👇👇👇👇👇
 function returnRandomIndex(array) {
-  return array[(Math.floor(Math.random() * array.length))];
+  return (Math.floor(Math.random() * array.length));
 }
 
 function selectMessageType(selection) {
@@ -65,21 +66,31 @@ function selectMessageType(selection) {
   selection.checked = false
 }
 
+function startRepeatMessages(array1, array2) {
+  if (array1.length === 0) {
+    alert("We've run out of new messages for this type.\n\nPlease feel free to look over the messages again to find one that speaks to you.")
+    for (var i = 0; i < array2.length; i++)
+      array1.push(array2[i])
+      array2.length = 0
+  }
+}
+
+function prepareMessage(array1, array2) {
+  yogaFigure.classList.add('hidden')
+  message.classList.remove('hidden')
+  clearButton.classList.remove('hidden')
+  startRepeatMessages(array1, array2)
+  var i = returnRandomIndex(array1)
+  message.innerText = `${array1[i]}`
+  array2.push(array1[i])
+  array1.splice(i, 1)
+}
+
 function deliverMessage() {
   if (affirmationSelection.checked === true) {
-    yogaFigure.classList.add('hidden')
-    message.classList.remove('hidden')
-    clearButton.classList.remove('hidden')
-    message.innerText = `
-      ${returnRandomIndex(data.affirmations)}
-    `
-  } else if (mantraSelection.checked === true) {
-    yogaFigure.classList.add('hidden')
-    message.classList.remove('hidden')
-    clearButton.classList.remove('hidden')
-    message.innerText = `
-      ${returnRandomIndex(data.mantras)}
-    `
+    prepareMessage(data.affirmations, data.splicedAffirmations)
+  } else {
+    prepareMessage(data.mantras, data.splicedMantras)
   }
 }
 
