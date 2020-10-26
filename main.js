@@ -68,32 +68,29 @@ function selectMessageType(selection) {
 
 function startRepeatMessages(array1, array2) {
   if (array1.length === 0) {
-    alert("We've run out of new messages for this type. Please feel free to look over the messages again to find one that speaks to you.")
+    alert("We've run out of new messages for this type.\n\nPlease feel free to look over the messages again to find one that speaks to you.")
     for (var i = 0; i < array2.length; i++)
       array1.push(array2[i])
       array2.length = 0
   }
 }
 
+function prepareMessage(array1, array2) {
+  yogaFigure.classList.add('hidden')
+  message.classList.remove('hidden')
+  clearButton.classList.remove('hidden')
+  startRepeatMessages(array1, array2)
+  var i = returnRandomIndex(array1)
+  message.innerText = `${array1[i]}`
+  array2.push(array1[i])
+  array1.splice(i, 1)
+}
+
 function deliverMessage() {
   if (affirmationSelection.checked === true) {
-    yogaFigure.classList.add('hidden')
-    message.classList.remove('hidden')
-    clearButton.classList.remove('hidden')
-    startRepeatMessages(data.affirmations, data.splicedAffirmations)
-    var i = returnRandomIndex(data.affirmations)
-    message.innerText = `${data.affirmations[i]}`
-    data.splicedAffirmations.push(data.affirmations[i])
-    data.affirmations.splice(i, 1)
-  } else if (mantraSelection.checked === true) {
-      yogaFigure.classList.add('hidden')
-      message.classList.remove('hidden')
-      clearButton.classList.remove('hidden')
-      startRepeatMessages(data.mantras, data.splicedMantras)
-      var i = returnRandomIndex(data.mantras)
-      message.innerText = `${data.mantras[i]}`
-      data.splicedMantras.push(data.mantras[i])
-      data.mantras.splice(i, 1)
+    prepareMessage(data.affirmations, data.splicedAffirmations)
+  } else {
+    prepareMessage(data.mantras, data.splicedMantras)
   }
 }
 
