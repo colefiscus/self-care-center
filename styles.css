@@ -39,6 +39,10 @@
   align-items: center;
 }
 
+h2 {
+  margin-bottom: 8px
+}
+
 p {
   color: #000000;
 }
@@ -100,6 +104,12 @@ p {
   border-radius: 5px;
   height: 27px;
   width: 185px;
+}
+
+.clear-button-position {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }
 
 .clear-button {
